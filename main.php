@@ -1,37 +1,35 @@
 <?php
 
 require_once('./classes/Human.php');
+require_once('./classes/Brave.php');
 require_once('./classes/Enemy.php');
 
-$human = new Human();
-$enemy = new Enemy();
-
-$human->name = '人間';
-$enemy->name = '敵';
+$brave = new Brave('勇者');
+$enemy = new Enemy('敵');
 
 $turn = 1;
 
-while ($human->hitPoint > 0 && $enemy->hitPoint > 0) {
+while ($brave->getHitPoint() > 0 && $enemy->getHitPoint() > 0) {
     echo '---' . $turn . 'ターン目---' . PHP_EOL;
 
-    echo '名前' . ' : ' . $human->name . PHP_EOL;
-    echo 'HP' . ' : ' . $human->hitPoint . '/' . $human::MAX_HIT_POINT . PHP_EOL;
+    echo '名前' . ' : ' . $brave->getName() . PHP_EOL;
+    echo 'HP' . ' : ' . $brave->getHitPoint() . '/' . $brave::MAX_HIT_POINT . PHP_EOL;
     echo PHP_EOL;
-    echo '名前' . ' : ' . $enemy->name . PHP_EOL;
-    echo 'HP' . ' : ' . $enemy->hitPoint . '/' . $enemy::MAX_HIT_POINT . PHP_EOL;
+    echo '名前' . ' : ' . $enemy->getName() . PHP_EOL;
+    echo 'HP' . ' : ' . $enemy->getHitPoint() . '/' . $enemy::MAX_HIT_POINT . PHP_EOL;
     echo PHP_EOL;
 
-    $human->doAttack($enemy);
-    $enemy->doAttack($human);
+    $brave->doAttack($enemy);
+    $enemy->doAttack($brave);
 
     $turn++;
 }
 
-echo '戦闘終了';
+echo '戦闘終了' . PHP_EOL;
 
-echo '名前' . ' : ' . $human->name . PHP_EOL;
-echo 'HP' . ' : ' . $human->hitPoint . '/' . $human::MAX_HIT_POINT . PHP_EOL;
+echo '名前' . ' : ' . $brave->getName() . PHP_EOL;
+echo 'HP' . ' : ' . $brave->getHitPoint() . '/' . $brave::MAX_HIT_POINT . PHP_EOL;
 echo PHP_EOL;
-echo '名前' . ' : ' . $enemy->name . PHP_EOL;
-echo 'HP' . ' : ' . $enemy->hitPoint . '/' . $enemy::MAX_HIT_POINT . PHP_EOL;
+echo '名前' . ' : ' . $enemy->getName() . PHP_EOL;
+echo 'HP' . ' : ' . $enemy->getHitPoint() . '/' . $enemy::MAX_HIT_POINT . PHP_EOL;
 echo PHP_EOL;
