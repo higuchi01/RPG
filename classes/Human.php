@@ -47,4 +47,13 @@ class Human
             $this->hitPoint = 0;
         }
     }
+
+    public function recoveryDamage(int $heal, object $member): void
+    {
+        $member->hitPoint += $heal;
+
+        if ($this->hitPoint > $member::MAX_HIT_POINT) {
+            $this->hitPoint = $member::MAX_HIT_POINT;
+        }
+    }
 }

@@ -9,9 +9,10 @@ class Enemy
     private int $hitPoint = 50;
     private int $attackPoint = 10;
 
-    public function __construct(string $name)
+    public function __construct(string $name, int $attackPoint)
     {
         $this->name = $name;
+        $this->attackPoint = $attackPoint;
     }
 
     public function getName(): string
@@ -29,12 +30,12 @@ class Enemy
         return $this->attackPoint;
     }
 
-    public function doAttack(object $brave): void
+    public function doAttack(object $member): void
     {
         echo '「' . $this->getName() . '」の攻撃' . PHP_EOL;
-        echo '「' . $brave->getName() . '」に' . $this->getAttackPoint() . 'のダメージ' . PHP_EOL;
+        echo '「' . $member->getName() . '」に' . $this->getAttackPoint() . 'のダメージ' . PHP_EOL;
         echo PHP_EOL;
-        $brave->tookDamage($this->getAttackPoint());
+        $member->tookDamage($this->getAttackPoint());
     }
 
     public function tookDamage(int $damage): void
