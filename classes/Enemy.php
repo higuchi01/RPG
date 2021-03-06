@@ -1,21 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 class Enemy
 {
     const MAX_HIT_POINT = 50;
-    public $name;
-    public $hitPoint = 50;
-    public $attackPoint = 10;
+    private string $name;
+    private int $hitPoint = 50;
+    private int $attackPoint = 10;
 
-    public function doAttack($human)
+    public function __construct(string $name, int $attackPoint)
     {
-        echo '「' . $this->name . '」の攻撃' . PHP_EOL;
-        echo '「' . $human->name . '」に' . $this->attackPoint . 'のダメージ' . PHP_EOL;
-        echo PHP_EOL;
-        $human->tookDamage($this->attackPoint);
+        $this->name = $name;
+        $this->attackPoint = $attackPoint;
     }
 
-    public function tookDamage($damage)
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getHitPoint(): int
+    {
+        return $this->hitPoint;
+    }
+
+    public function getAttackPoint(): int
+    {
+        return $this->attackPoint;
+    }
+
+    public function doAttack(object $member): void
+    {
+        echo '「' . $this->getName() . '」の攻撃' . PHP_EOL;
+        echo '「' . $member->getName() . '」に' . $this->getAttackPoint() . 'のダメージ' . PHP_EOL;
+        echo PHP_EOL;
+        $member->tookDamage($this->getAttackPoint());
+    }
+
+    public function tookDamage(int $damage): void
     {
         $this->hitPoint -= $damage;
 
