@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Human
 {
     const MAX_HIT_POINT = 100;

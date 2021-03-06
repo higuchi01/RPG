@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Brave extends Human
 {
     const MAX_HIT_POINT = 120;

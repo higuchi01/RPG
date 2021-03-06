@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Enemy
 {
     const MAX_HIT_POINT = 50;
