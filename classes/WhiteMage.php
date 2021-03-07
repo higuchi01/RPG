@@ -14,15 +14,22 @@ class WhiteMage extends Human
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
 
-    public function doAttackWhiteMage(object $enemy, object $member): void
+    public function doAttackWhiteMage(array $enemies, array $members)
     {
+        if ($this->getHitPoint() <= 0) {
+            return false;
+        }
+
+        $memberIndex = rand(0, count($members) - 1);
+        $member = $members[$memberIndex];
+
         if (rand(1, 2) === 1) {
             echo '「' . $this->getName() . '」のスキルが発動' . PHP_EOL;
             echo '「' . $member->getName() . '」のHPが' . $this->intelligence . '回復' . PHP_EOL;
             echo PHP_EOL;
             $member->recoveryDamage($this->intelligence, $member);
         } else {
-            parent::doAttack($enemy);
+            parent::doAttack($enemies);
         }
     }
 }

@@ -31,8 +31,15 @@ class Human
         return $this->attackPoint;
     }
 
-    public function doAttack(object $enemy): void
+    public function doAttack(array $enemies)
     {
+        if ($this->getHitPoint() <= 0) {
+            return false;
+        }
+
+        $enemyIndex = rand(0, count($enemies) - 1);
+        $enemy = $enemies[$enemyIndex];
+
         echo '「' . $this->getName() . '」の攻撃' . PHP_EOL;
         echo '「' . $enemy->getName() . '」に' . $this->getAttackPoint() . 'のダメージ' . PHP_EOL;
         echo PHP_EOL;
@@ -43,7 +50,7 @@ class Human
     {
         $this->hitPoint -= $damage;
 
-        if ($this->hitPoint < 0) {
+        if ($this->getHitPoint() < 0) {
             $this->hitPoint = 0;
         }
     }
@@ -52,7 +59,7 @@ class Human
     {
         $member->hitPoint += $heal;
 
-        if ($this->hitPoint > $member::MAX_HIT_POINT) {
+        if ($this->getHitPoint() > $member::MAX_HIT_POINT) {
             $this->hitPoint = $member::MAX_HIT_POINT;
         }
     }

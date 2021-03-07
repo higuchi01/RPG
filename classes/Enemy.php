@@ -30,8 +30,15 @@ class Enemy
         return $this->attackPoint;
     }
 
-    public function doAttack(object $member): void
+    public function doAttack(array $members)
     {
+        if ($this->getHitPoint() <= 0) {
+            return false;
+        }
+
+        $memberIndex = rand(0, count($members) - 1);
+        $member = $members[$memberIndex];
+
         echo '「' . $this->getName() . '」の攻撃' . PHP_EOL;
         echo '「' . $member->getName() . '」に' . $this->getAttackPoint() . 'のダメージ' . PHP_EOL;
         echo PHP_EOL;
